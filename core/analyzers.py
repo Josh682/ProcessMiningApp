@@ -311,7 +311,14 @@ def analyze_exercise_11_15(dataset: LoadedDataset) -> AnalysisResult:
     raw_df = dataset.raw_df
     case_summary = dataset.case_summary_df
 
-    act_mask = raw_df["concept:name"] == "W_Assess Potential Fraud"
+    act_mask = (
+        raw_df["concept:name"]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        == "w_assess potential fraud"
+    )
     life_mask = (
         raw_df["lifecycle:transition"]
         .fillna("")
@@ -406,7 +413,14 @@ def analyze_exercise_11_18(dataset: LoadedDataset) -> AnalysisResult:
     raw_df = dataset.raw_df
     case_summary = dataset.case_summary_df
 
-    act_mask = raw_df["concept:name"] == "W_Assess Potential Fraud"
+    act_mask = (
+        raw_df["concept:name"]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        == "w_assess potential fraud"
+    )
     life_mask = (
         raw_df["lifecycle:transition"]
         .fillna("")
